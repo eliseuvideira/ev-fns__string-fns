@@ -1,22 +1,31 @@
-import { identity } from "../src/index";
+import { camelToSnake, snakeToCamel } from "../src/index";
 
-describe("identity", () => {
+describe("snakeToCamel", () => {
   const cases = [
-    true,
-    false,
-    0,
-    1,
-    Math.random(),
-    "",
-    Date.now().toString(),
-    new Date(),
-    [],
-    {},
+    ["snake_case", "snakeCase"],
+    ["_private_value", "_privateValue"],
   ];
 
-  it("is an identity function", () => {
+  it("transforms snake case to camel case", () => {
     expect.assertions(cases.length);
 
-    cases.forEach((value) => expect(identity(value)).toEqual(value));
+    cases.forEach(([snake, camel]) => {
+      expect(snakeToCamel(snake)).toBe(camel);
+    });
+  });
+});
+
+describe("camelToSnake", () => {
+  const cases = [
+    ["camelCase", "camel_case"],
+    ["_privateValue", "_private_value"],
+  ];
+
+  it("transforms snake case to camel case", () => {
+    expect.assertions(cases.length);
+
+    cases.forEach(([camel, snake]) => {
+      expect(camelToSnake(camel)).toBe(snake);
+    });
   });
 });

@@ -1,1 +1,2 @@
-export const identity = <T>(x: T) => x;
+export { snakeToCamel } from "./functions/snakeToCamel";
+export { camelToSnake } from "./functions/camelToSnake";
